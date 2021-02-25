@@ -1,5 +1,21 @@
 let currentDay = $("#currentDay");
-let hours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+let hours = [
+  "9 am",
+  "10 am",
+  "11 am",
+  "12 pm",
+  "1 pm",
+  "2 pm",
+  "3 pm",
+  "4 pm",
+  "5 pm",
+];
+let currentHour = moment().format("h a");
+let timeBlock;
+let hourEl;
+let hourTask;
+let saveBtn;
+console.log(typeof currentHour);
 
 // handle displaying the date
 function displayTime() {
@@ -15,12 +31,12 @@ displayTime();
 let workDayContainer = $(".container");
 
 function addHourRow(hour) {
-  let timeBlock = $("<div>").addClass("time-block row");
-  let hourEl = $("<p>")
+  timeBlock = $("<div>").addClass("time-block row");
+  hourEl = $("<p>")
     .addClass("hour col-2 d-flex align-items-center justify-content-center")
     .text(hour);
-  let hourTask = $("<textarea>").addClass("col-8 past");
-  let saveBtn = $("<button>").addClass("saveBtn col-2");
+  hourTask = $("<textarea>").addClass("col-8");
+  saveBtn = $("<button>").addClass("saveBtn col-2");
   let saveIcon = $("<i>").addClass("fas fa-save");
 
   workDayContainer.append(timeBlock);
@@ -28,30 +44,18 @@ function addHourRow(hour) {
   saveBtn.append(saveIcon);
 }
 
-// addHourRow(11);
-
-for (let i = 0; i < hours.length; i++) {
-  addHourRow(hours[i]);
+function createWorkDay() {
+  for (let i = 0; i < hours.length; i++) {
+    addHourRow(hours[i]);
+    if (hours[i] < currentHour) {
+      hourTask.addClass("past");
+    } else if (hours[i] === currentHour) {
+      hourTask.addClass("present");
+      console.log(hours[i]);
+    } else if (hours[i] > currentHour) {
+      hourTask.addClass("future");
+    }
+  }
 }
 
-// 	let timeBlock = $('<table>').addClass('time-block');
-// 	timeBlockContainer.append(timeBlock);
-//
-// 	let hourCol = $('<tr scope="row">').addClass('hour');
-// 	timeBlock.append(hourCol);
-//
-//
-// 	let hourRow = $('<td scope="row">');
-//
-// 	// function addHourRow() {
-// 	// 	hourCol.append(hourRow);
-// 	// }
-// 	$(hours).each(function(index, item) {
-// 		$(hourCol).append(hourRow);
-// 		hourRow.text(`${item}`);
-// 		console.log(hourRow.value);
-// 	});
-
-// $.each(hours[], function( index ) {
-//   console.log( index + ": " + $( this ).text() );
-// });
+createWorkDay();
