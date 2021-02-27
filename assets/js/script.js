@@ -84,21 +84,6 @@ function saveBtnClick() {
 }
 
 function getTasks() {
-  //   for (let i = 0; i < hours.length; i++) {
-  //     let hourID = $(`#taskHour${i}`).text();
-  //     let storageKey;
-  //
-  //     storageKey = localStorage.key(i);
-  //     if (hourID === storageKey) {
-  //       $(`#taskHour${i}`)
-  //         .parent()
-  //         .children(".textarea")
-  //         .val(localStorage.getItem(localStorage.key(i)));
-  //       console.log(hourID, storageKey);
-  //     }
-  // for (let j = 0; j < localStorage.length; j++) {
-  // }
-
   $.each(localStorage, function (key, value) {
     for (let i = 0; i < hours.length; i++) {
       let hourID = $(`#taskHour${i}`).text();
