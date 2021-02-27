@@ -33,21 +33,27 @@ function now() {
 
 function addHourRow(hour, idHour) {
   timeBlock = $("<div>").addClass("time-block row");
-  workDayContainer.append(timeBlock);
+
   hourEl = $("<p>")
     .addClass("hour col-2 d-flex align-items-center justify-content-center")
     .attr("id", `taskHour${idHour}`)
     .text(hour);
-  timeBlock.append(hourEl);
+
   hourTask = $(
     "<textarea placeholder='Enter task to be completed...'>"
   ).addClass("col-8 textarea description text-dark");
-  timeBlock.append(hourTask);
-  saveBtn = $("<button>").addClass("saveBtn col-1");
-  timeBlock.append(saveBtn);
-  saveIcon = $("<i>").addClass("fas fa-save fa-2x");
-  saveBtn.append(saveIcon);
 
+  saveBtn = $("<button>").addClass("saveBtn col-1");
+
+  saveIcon = $("<i>").addClass("fas fa-save fa-2x");
+
+  function appendElements() {
+    workDayContainer.append(timeBlock);
+    timeBlock.append(hourEl, hourTask, saveBtn);
+    saveBtn.append(saveIcon);
+  }
+
+  appendElements();
   saveBtnClick();
 }
 
@@ -70,6 +76,7 @@ function createWorkDay() {
       addClass("future");
     }
   }
+  getTasks();
 }
 
 function saveBtnClick() {
@@ -95,4 +102,4 @@ function getTasks() {
 }
 
 createWorkDay();
-getTasks();
+// getTasks();
