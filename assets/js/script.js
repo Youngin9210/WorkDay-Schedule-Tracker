@@ -75,6 +75,7 @@ function createWorkDay() {
 function saveBtnClick() {
   saveBtn.click(function (event) {
     event.preventDefault;
+
     let taskDesc = $(this).parent().children(".textarea").val();
     let taskHour = $(this).parent().children(".hour").text();
 
@@ -83,20 +84,29 @@ function saveBtnClick() {
 }
 
 function getTasks() {
-  for (let i = 0; i < hours.length; i++) {
-    let hourID = $(`#taskHour${i}`).text();
-    let storageKey;
+  //   for (let i = 0; i < hours.length; i++) {
+  //     let hourID = $(`#taskHour${i}`).text();
+  //     let storageKey;
+  //
+  //     storageKey = localStorage.key(i);
+  //     if (hourID === storageKey) {
+  //       $(`#taskHour${i}`)
+  //         .parent()
+  //         .children(".textarea")
+  //         .val(localStorage.getItem(localStorage.key(i)));
+  //       console.log(hourID, storageKey);
+  //     }
+  // for (let j = 0; j < localStorage.length; j++) {
+  // }
 
-    for (let j = 0; j < localStorage.length; j++) {
-      storageKey = localStorage.key(j);
-      if (hourID === storageKey) {
-        $(`#taskHour${i}`)
-          .parent()
-          .children(".textarea")
-          .val(localStorage.getItem(localStorage.key(i)));
+  $.each(localStorage, function (key, value) {
+    for (let i = 0; i < hours.length; i++) {
+      let hourID = $(`#taskHour${i}`).text();
+      if (key === hourID) {
+        $(`#taskHour${i}`).parent().children(".textarea").val(value);
       }
     }
-  }
+  });
 }
 
 createWorkDay();
