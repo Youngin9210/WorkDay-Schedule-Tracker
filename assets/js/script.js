@@ -72,12 +72,17 @@ function addTimeBlock(hour, idHour) {
 
 // setting a function to append elements to html
 function appendElements() {
-  //
+  // appending the time block element to be a child element of workDayContainer
   workDayContainer.append(timeBlock);
+
+  // appending the hourEl hourTask and saveBtn elements to be a child elements of the time block element
   timeBlock.append(hourEl, hourTask, saveBtn);
+
+  // appending the saveIcon element to be a child element of the saveBtn element
   saveBtn.append(saveIcon);
 }
 
+// setting a function to remove any classes tied to the hourTask element and adding whatever class is called into the function(cl)
 function addClass(cl) {
   hourTask.removeClass("past");
   hourTask.removeClass("present");
@@ -85,41 +90,68 @@ function addClass(cl) {
   hourTask.addClass(cl);
 }
 
+// function to create time block elements via a for loop
 function createWorkDay() {
+  // calling a function to get the current hour
   now();
+
+  // looping through an array to to create time blocks
   for (let i = 0; i < workDayHours.length; i++) {
+    // calling addTimeBlock function from above to create time blocks
     addTimeBlock(workDayHours[i], i);
+    // if the current index of hours is less than the currentHour...
     if (hours[i] < currentHour) {
+      // then, add the class 'past' to the hourTask element to add styling
       addClass("past");
+      // if current index of hours is strictly equal to currentHour...
     } else if (hours[i] === currentHour) {
+      // then, add class 'present'
       addClass("present");
+      // if current index of hours is greater than the currentHour...
     } else if (hours[i] > currentHour) {
+      // then, add class 'past'
       addClass("future");
     }
   }
+
+  // calling a function to get values from localStorage
   getTasks();
 }
 
+// function to be called on later to implement a click event on saveBtn
 function saveBtnClick() {
+  // adding a click event to saveBtn
   saveBtn.click(function (event) {
+    // preventing default action
     event.preventDefault;
-
+    // defining a variable referring to this(saveBtn) and using DOM Traversal to get the value of textarea
     let taskDesc = $(this).parent().children(".textarea").val();
+    // defining a variable referring to this(saveBtn) and using DOM Traversal to get the text value of <p>
     let taskHour = $(this).parent().children(".hour").text();
 
+    // setting items into localStorage using variables defined above
+    // taskHour is key and taskDesc is value
     localStorage.setItem(taskHour, taskDesc);
   });
 }
 
+// creating a function to get tasks from localStorage and place them in the corresponding textarea
 function getTasks() {
+  // looping through localStorage
   $.each(localStorage, function (key, value) {
+    // looping through hours array
     for (let i = 0; i < hours.length; i++) {
+      // then defining a variable to equal the text value of the current <p> with an id taskHour[i]
       let hourID = $(`#taskHour${i}`).text();
+      // if localStorage key === hourId...
       if (key === hourID) {
+        // then, using DOM Traversal, setting the text value of the corresponding textarea to that key's value
         $(`#taskHour${i}`).parent().children(".textarea").val(value);
+        return;
       }
     }
   });
 }
 
+// creating the html structure and placing any items in localStorage into the list
 createWorkDay();
