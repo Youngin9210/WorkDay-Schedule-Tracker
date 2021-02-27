@@ -41,7 +41,7 @@ function addHourRow(hour, idHour) {
   timeBlock.append(hourEl);
   hourTask = $(
     "<textarea placeholder='Enter task to be completed...'>"
-  ).addClass("col-8 textarea description");
+  ).addClass("col-8 textarea description text-dark");
   timeBlock.append(hourTask);
   saveBtn = $("<button>").addClass("saveBtn col-1");
   timeBlock.append(saveBtn);
