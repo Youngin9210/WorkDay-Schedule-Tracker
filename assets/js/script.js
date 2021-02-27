@@ -36,13 +36,14 @@ function addHourRow(hour, idHour) {
   workDayContainer.append(timeBlock);
   hourEl = $("<p>")
     .addClass("hour col-2 d-flex align-items-center justify-content-center")
+    .attr("id", `taskHour${idHour}`)
     .text(hour);
   timeBlock.append(hourEl);
-  hourTask = $("<textarea placeholder='Enter task to be completed...'>")
-    .addClass("col-8 textarea description")
-    .attr("id", `taskHour${idHour}`);
+  hourTask = $(
+    "<textarea placeholder='Enter task to be completed...'>"
+  ).addClass("col-8 textarea description");
   timeBlock.append(hourTask);
-  saveBtn = $("<button>").addClass("saveBtn col-2");
+  saveBtn = $("<button>").addClass("saveBtn col-1");
   timeBlock.append(saveBtn);
   saveIcon = $("<i>").addClass("fas fa-save fa-2x");
   saveBtn.append(saveIcon);
@@ -77,15 +78,26 @@ function createWorkDay() {
   }
 }
 
-function setStorage() {
-  event.parent();
-  console.log(e.parent());
-  //   for (let i = 0; i < hours.length; i++) {
-  //     let task = $(`#taskHour${i}`).val();
-  //     let taskHour = hourTask.attr("id", i);
-  //
-  //     localStorage.setItem(`taskHour${i}`, task);
-  //   }
+function getTasks() {
+  for (let i = 0; i < hours.length; i++) {
+    let hourID = $(`#taskHour${i}`).text();
+    let storageKey;
+
+    // console.log(hourID);
+    for (let j = 0; j < localStorage.length; j++) {
+      storageKey = localStorage.key(j);
+      // console.log(storageKey);
+      if (hourID === storageKey) {
+        $(`#taskHour${i}`)
+          .parent()
+          .children(".textarea")
+          .val(localStorage.getItem(localStorage.key(i)));
+      }
+    }
+  }
 }
 
+// getTasks();
+
 createWorkDay();
+getTasks();
