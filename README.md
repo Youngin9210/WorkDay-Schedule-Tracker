@@ -4,7 +4,7 @@ Homework Project 5 (jQuery)
 
 ## Description
 
-This webpage utilizes jQuery along with Moment.js to create a day planner for office hours. When entering a task into a textarea and clicking the corresponding save button, the task is then saved to localStorage. Upon refreshing or reloading the page, the items in localStorage are then printed to the corresponding textarea that they were originally saved to.
+This webpage utilizes jQuery along with Moment.js and Bootstrap to create a day planner for office hours. When entering a task into a textarea and clicking the corresponding save button, the task is then saved to localStorage. Upon refreshing or reloading the page, the items in localStorage are then printed to the corresponding textarea that they were originally saved to.
 
 Check it out here https://youngin9210.github.io/WorkDay-Schedule-Tracker/
 
