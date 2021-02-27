@@ -48,13 +48,7 @@ function addHourRow(hour, idHour) {
   saveIcon = $("<i>").addClass("fas fa-save fa-2x");
   saveBtn.append(saveIcon);
 
-  saveBtn.click(function (event) {
-    event.preventDefault;
-    let taskDesc = $(this).parent().children(".textarea").val();
-    let taskHour = $(this).parent().children(".hour").text();
-
-    localStorage.setItem(taskHour, taskDesc);
-  });
+  saveBtnClick();
 }
 
 function addClass(cl) {
@@ -76,6 +70,16 @@ function createWorkDay() {
       addClass("future");
     }
   }
+}
+
+function saveBtnClick() {
+  saveBtn.click(function (event) {
+    event.preventDefault;
+    let taskDesc = $(this).parent().children(".textarea").val();
+    let taskHour = $(this).parent().children(".hour").text();
+
+    localStorage.setItem(taskHour, taskDesc);
+  });
 }
 
 function getTasks() {
