@@ -18,7 +18,7 @@ Check it out here https://youngin9210.github.io/WorkDay-Schedule-Tracker/
 
 ## Screenshots
 
-![image](assets/images/)
+![gif](assets/images/workdaytracker.gif)
 
 ## Installation
 
