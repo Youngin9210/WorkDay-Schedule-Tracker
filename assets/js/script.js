@@ -48,17 +48,24 @@ function addTimeBlock(hour, idHour) {
 
   // creating an paragraph element to display the hour of the time block
   hourEl = $("<p>")
+    // adding classes from style.css and bootstrap cdn
     .addClass("hour col-2 d-flex align-items-center justify-content-center")
+    // giving hourEl an id
     .attr("id", `taskHour${idHour}`)
+    // setting the text of hourEl
     .text(hour);
 
   // creating a textarea to use to input task
   hourTask = $(
     "<textarea placeholder='Enter task to be completed...'>"
+    // adding classes from style.css and bootstrap cdn
   ).addClass("col-8 textarea description text-dark");
 
   // creating a save button to save tasks
-  saveBtn = $("<button>").addClass("saveBtn col-1");
+  // adding classes from style.css and bootstrap cdn
+  saveBtn = $("<button>").addClass(
+    "saveBtn col-1 d-flex align-items-center justify-content-center "
+  );
 
   // creating a save icon using bootstrap classes
   saveIcon = $("<i>").addClass("fas fa-save fa-2x");
