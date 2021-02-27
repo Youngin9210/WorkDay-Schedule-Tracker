@@ -87,10 +87,8 @@ function getTasks() {
     let hourID = $(`#taskHour${i}`).text();
     let storageKey;
 
-    // console.log(hourID);
     for (let j = 0; j < localStorage.length; j++) {
       storageKey = localStorage.key(j);
-      // console.log(storageKey);
       if (hourID === storageKey) {
         $(`#taskHour${i}`)
           .parent()
@@ -100,8 +98,6 @@ function getTasks() {
     }
   }
 }
-
-// getTasks();
 
 createWorkDay();
 getTasks();
