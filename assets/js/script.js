@@ -130,7 +130,7 @@ function saveBtnClick() {
   // adding a click event to saveBtn
   saveBtn.click(function (event) {
     // preventing default action
-    event.preventDefault;
+    event.preventDefault();
     // defining a variable referring to this(saveBtn) and using DOM Traversal to get the value of textarea
     let taskDesc = $(this).parent().children(".textarea").val();
     // defining a variable referring to this(saveBtn) and using DOM Traversal to get the text value of <p>
